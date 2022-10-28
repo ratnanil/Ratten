@@ -11,9 +11,14 @@ execute:
 #| echo: false
 
 library(tidyverse)
+library(googlesheets4)
+
+googlesheets4::gs4_deauth()
 
 
-gewicht <- read_csv("gewicht.csv")
+gewicht <- googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/1JCcH-AHe9fykagElfhSy6yOMHZlXYoGIi6oWHJkM21s/edit#gid=0")
+
+# gewicht <- read_csv("gewicht.csv")
 
 ggplot(gewicht, aes(Datum)) +
   geom_point(aes(y = Zebra, colour = "Zebra")) +
@@ -23,8 +28,6 @@ ggplot(gewicht, aes(Datum)) +
   geom_point(aes(y = Puenktchen, colour = "Puenktchen")) +
   geom_line(aes(y = Puenktchen, colour = "Puenktchen")) +
   labs(colour = "Ratte", y = "Gewicht (g)")
-  
-  
 
 ```
 
