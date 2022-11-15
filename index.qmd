@@ -19,14 +19,12 @@ googlesheets4::gs4_deauth()
 gewicht <- googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/1JCcH-AHe9fykagElfhSy6yOMHZlXYoGIi6oWHJkM21s/edit#gid=0")
 
 # gewicht <- read_csv("gewicht.csv")
-
-ggplot(gewicht, aes(Datum)) +
-  geom_point(aes(y = Zebra, colour = "Zebra")) +
-  geom_line(aes(y = Zebra, colour = "Zebra"))   +
-  geom_point(aes(y = Kalu, colour = "Kalu")) +
-  geom_line(aes(y = Kalu, colour = "Kalu")) +
-  geom_point(aes(y = Puenktchen, colour = "Puenktchen")) +
-  geom_line(aes(y = Puenktchen, colour = "Puenktchen")) +
+gewicht %>% 
+  pivot_longer(-Datum) %>% 
+  na.omit() %>% 
+  ggplot(aes(Datum, value, colour = name))+
+  geom_line()+
+  geom_point() +
   labs(colour = "Ratte", y = "Gewicht (g)")
 
 ```
