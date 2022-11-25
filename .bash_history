@@ -12,3 +12,7 @@ git commit -m "rm cache"
 git add .
 git commit -m "gsheets"
 git push
+git add 
+git add .
+git commit -m "update"
+git push

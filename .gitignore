@@ -2,3 +2,5 @@
 .config
 .local
 .lock*
+.bash_history
+

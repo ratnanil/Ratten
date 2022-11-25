@@ -18,6 +18,16 @@ googlesheets4::gs4_deauth()
 
 gewicht <- googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/1JCcH-AHe9fykagElfhSy6yOMHZlXYoGIi6oWHJkM21s/edit#gid=0")
 
+
+knitr::kable(gewicht)
+```
+
+
+
+```{r}
+#| column: page
+#| out-width: 100%
+
 # gewicht <- read_csv("gewicht.csv")
 gewicht %>% 
   pivot_longer(-Datum) %>% 
@@ -25,7 +35,9 @@ gewicht %>%
   ggplot(aes(Datum, value, colour = name))+
   geom_line()+
   geom_point() +
-  labs(colour = "Ratte", y = "Gewicht (g)")
+  ggplot2::expand_limits(y = 0) +
+  labs(colour = "Ratte", y = "Gewicht (g)") +
+  theme(legend.position = "bottom")
 
 ```
 
